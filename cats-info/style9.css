@@ -1,0 +1,59 @@
+body{
+    background-color: rgba(10, 149, 219, 0.905);
+}
+
+.content{
+    display: flex;
+    background-color: rgb(143, 210, 143);
+    flex-wrap: wrap;
+     justify-content: space-around;
+}
+
+.card{
+    background-color: aquamarine;
+    width: 270px;
+    padding: 10px;
+    margin: 20px;
+   transition: 0.5s;
+}
+
+img{
+    width: 100%;
+
+}
+
+h1{
+    text-align: center;
+    font-family: Lobster;
+}
+
+.lapa{
+    width: 50px;
+    
+}
+
+.header{
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.link a{
+    color: aqua;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: Lobster;
+}
+
+.link a:hover{
+    color: blue;
+}
+
+.card:hover{
+    background-color: rgb(33, 51, 66);
+    color: aqua;
+    box-shadow: 5px 5px 5px rgb(36, 66, 84);
+}
+    
