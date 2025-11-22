@@ -1,0 +1,59 @@
+h1{
+    font-family: "Press Start 2P", system-ui;
+    text-align: center;
+    text-shadow: 0px 10px 15px violet, 0px 15px 15px black;
+}
+
+.minecraft{
+    background-image: linear-gradient(white, blue, aquamarine, white);
+    padding-top: 50px;
+    
+}
+
+.father-1{
+    width: 50%;
+    margin: 50px auto;
+}
+
+
+img{
+    width: 100%;
+}
+
+.text, .imag{
+width: 200px;
+padding: 35px;
+flex-grow: 1;
+}
+
+.father-2, .father-3{
+    display: flex;
+ flex-wrap: wrap;
+ align-items: center;
+}
+
+.foto-text{
+    width: 150px;
+    padding: 15px;
+    flex-grow: 1;
+    text-align: center;
+}
+
+body{
+    margin: 0;
+}
+
+.roblox{
+    background: linear-gradient(white, blue, aquamarine);
+    padding-top: 80px;
+}
+
+.gd{
+    background: linear-gradient( blue, aquamarine, white);
+    padding-top: 80px;
+}
+
+p{
+    font-family: "Press Start 2P", system-ui;
+}
+
