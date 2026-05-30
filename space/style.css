@@ -1,0 +1,1140 @@
+img{
+    width: 100%;
+}
+.navbar{
+  background-color: #0077b6;
+}
+
+
+.popa{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(8, 8, 116);
+    color: azure;
+    font-family: Comfortaa;
+    font-size: 1.2rem;
+}
+
+.popa2{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: rgb(22, 22, 152);
+    color: azure;
+    font-family: Comfortaa;
+    font-size: 1.2rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.popa3{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    background-color: rgb(22, 22, 152);
+    color: azure;
+    font-family: Comfortaa;
+    font-size: 1.2rem;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.card
+
+
+
+
+
+/* ================= СТИЛИ ДЛЯ АНИМАЦИИ ОРБИТЫ (РАБОЧИЕ СФЕРЫ) ================= */
+
+.solar-hero-section {
+    position: relative;
+    width: 100%;
+    height: 75vh;
+    background-color: #000000;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 40px;
+}
+
+/* Наклоняем всю систему для 3D эффекта */
+.solar-system-orbit-3d {
+    position: relative;
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: perspective(1000px) rotateX(65deg) rotateY(-5deg);
+    margin-top: -60px;
+    transform-style: preserve-3d; /* Включаем поддержку 3D для вложенных элементов */
+}
+
+/* СОЛНЦЕ - Выравниваем обратно против наклона системы */
+.sun-core-yellow {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fff700 30%, #ffaa00 60%, #ff4400 100%);
+    filter: drop-shadow(0 0 45px #ffaa00) drop-shadow(0 0 10px #ffcc00);
+    z-index: 10;
+    transform: rotateX(-65deg) rotateY(5deg); /* Компенсируем наклон системы, чтобы Солнце было шаром */
+}
+
+/* ОБЩИЙ СТИЛЬ ОРБИТ */
+.orbit-line {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+/* Орбита Земли и скорость вращения */
+.earth-orbit-line {
+    width: 260px;
+    height: 260px;
+    animation: spinDisk 10s linear infinite; 
+}
+
+/* Орбита Марса и скорость вращения */
+.mars-orbit-line {
+    width: 400px;
+    height: 400px;
+    animation: spinDisk 18s linear infinite; 
+}
+
+/* КРУГЛЫЕ ПЛАНЕТЫ (Контейнеры на краю орбиты) */
+.planet-sphere {
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 22px;
+    height: 22px;
+    margin-top: -11px;
+    margin-left: -11px;
+    border-radius: 50%;
+}
+
+/* ЗЕМЛЯ - Объемный шар с двойной анимацией */
+.earth-sphere {
+    background: radial-gradient(circle at 35% 35%, #00f2fe 0%, #00b4d8 55%, #005f73 90%, #000000 100%);
+    filter: drop-shadow(0 0 12px #00b4d8);
+    /* spinPlanet крутит Землю в обратную сторону, чтобы она не сплющивалась! */
+    animation: spinPlanet 10s linear infinite;
+}
+
+/* МАРС - Чуть меньше и другая скорость */
+.mars-sphere {
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+    background: radial-gradient(circle at 35% 35%, #ff9a9e 0%, #ff5555 55%, #b80d0d 90%, #000000 100%);
+    filter: drop-shadow(0 0 10px #ff3333);
+    animation: spinPlanet 18s linear infinite;
+}
+
+
+/* ================= КЛАССИЧЕСКИЕ АНИМАЦИИ (РАБОТАЮТ СЕЙЧАС) ================= */
+
+/* Вращение орбитального кольца вперед */
+@keyframes spinDisk {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Обратное вращение планеты, которое убирает плоский 3D-эффект «блина» */
+@keyframes spinPlanet {
+    from {
+        transform: rotate(0deg) rotateX(-65deg);
+    }
+    to {
+        /* Разворачиваем планету в минус 360 градусов, пока она летит вперед на плюс 360 */
+        transform: rotate(-360deg) rotateX(-65deg);
+    }
+}
+
+/* ==========================================================================
+   ОКРЕМИЙ БЛОК: СТИЛІ ДЛЯ КАРТОЧОК ПЛАНЕТ (Sun-system Info)
+   ========================================================================== */
+
+/* 1. Головна секція, де розташовані всі картки */
+.solar-page-section {
+    position: relative;
+    width: 100%;
+    background-color: #020208; /* Глибокий космічний чорний фон */
+    color: #ffffff;
+    font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+/* 2. Базовий каркас картки планети (у стилі минулих сторінок) */
+.planet-card-neon {
+    padding: 25px 35px;
+    border-radius: 20px;
+    background-color: #050510; /* Темне засклене ядро картки */
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ефект легкого підняття картки при наведенні курсору */
+.planet-card-neon:hover {
+    transform: translateY(-4px);
+}
+
+/* 3. Текстові елементи всередині карток */
+.planet-card-neon h2 {
+    font-size: 1.8rem;
+    font-weight
+}
+.ratio-16x9{
+    height: 300px;
+}
+
+body {
+    background-color: #020208 !important; /* Или #000000 */
+    color: #ffffff;
+}
+
+
+
+.space {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+    background-color: #050510; 
+    overflow: hidden;
+}
+
+
+.galaxy {
+    width: 450px; 
+    height: auto;
+    
+    
+    filter: drop-shadow(0 0 25px rgba(130, 70, 255, 0.7)); 
+    
+   
+    animation: spinAndTilt 40s linear infinite; 
+}
+
+
+@keyframes spinAndTilt {
+    from {
+        transform: perspective(1000px) rotateX(55deg) rotateZ(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(55deg) rotateZ(360deg);
+    }
+}
+
+
+
+.space {
+    position: relative; 
+    background-color: #050510;
+    overflow: hidden;
+}
+
+
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; 
+    
+    
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 50px 160px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 90px 40px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 160px 120px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 210px 220px, rgba(255,255,255,0.5), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 240px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 290px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 320px 90px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 380px 240px, rgba(255,255,255,0.7), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 420px 190px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 470px 60px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 530px 130px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 610px 280px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 670px 40px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 720px 210px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 780px 90px, rgba(255,255,255,0.6), rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 820px 170px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 890px 250px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 950px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 980px 180px, #fff, rgba(0,0,0,0));
+    
+   
+    background-size: 550px 350px; 
+    opacity: 0.8; 
+}
+
+
+
+.galaxy-info {
+    color: #ffffff;
+    font-family: sans-serif;
+    z-index: 2;
+    position: relative;
+    
+   
+    background-color: rgba(0, 0, 0, 0.6); 
+    
+    
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    
+    
+    padding: 30px; 
+    
+    
+    border-radius: 12px; 
+    
+   
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+
+    font-family: Comfortaa;
+}
+
+
+/* Секція для Сомбреро (дзеркальна) */
+.galaxy-right-section {
+    position: relative;
+    width: 100%;
+    min-height: 500px;
+    padding: 60px 0;
+    background-color: #0077b6; /* Той самий блакитний фон для єдності стилю */
+    overflow: hidden;
+    /* Можна додати невелику лінію-розділювач між секціями */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Використовуємо вже створений блок зірок */
+.galaxy-right-section .stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    /* Тут копіюємо той самий градієнт з попередніх повідомлень */
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 140px 180px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 250px 50px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 360px 220px, #fff, rgba(0,0,0,0));
+    background-size: 550px 350px; 
+    opacity: 0.6;
+}
+
+/* Стиль для рамки тексту (копіюємо з Андромеди) */
+.galaxy-info {
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    z-index: 2;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 30px; 
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); 
+}
+
+/* Анімація залишається тією ж самою (клас .galaxy) */
+.galaxy {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 0 35px rgba(255, 255, 255, 0.8)); 
+    animation: spinAndTilt 40s linear infinite; 
+}
+
+/* Анімація spinAndTilt вже має бути у твоєму CSS */
+
+
+.details-section{
+  font-family: Comfortaa;
+}
+
+/* СТИЛІ ДЛЯ НИЖНІХ ВЕЛИКИХ БЛОКІВ */
+.details-section {
+    width: 100%;
+    padding: 80px 0;
+    background-color: #020220; /* Глибокий темний космос */
+    color: #ffffff;
+    border-top: 3px solid #8a2be2;
+}
+
+.details-section h2 {
+    font-size: 2.5rem;
+    color: #00b4d8;
+    font-weight: 700;
+}
+
+/* ЗАГАЛЬНІ НАЛАШТУВАННЯ ДЛЯ ОБОХ РАМОК */
+.details-box-left, .details-box-right {
+    padding: 35px;
+    border-radius: 16px;
+    height: 100%; /* Щоб картки були однакової висоти, навіть якщо тексту трохи менше */
+    background-color: rgba(255, 255, 255, 0.03); /* Дуже легкий прозорий фон */
+}
+
+.details-box-left h3, .details-box-right h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.details-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #dcdcdc;
+    margin-bottom: 0;
+    text-align: left; /* Для колонок краще вирівнювання по лівому краю */
+}
+
+/* ЛІВА РАМКА: Фіолетовий неон */
+.details-box-left {
+    border: 2px solid #8a2be2;
+    box-shadow: inset 0 0 15px rgba(138, 43, 226, 0.2), 0 5px 20px rgba(138, 43, 226, 0.3);
+}
+.details-box-left h3 {
+    color: #b388ff; /* Світло-фіолетовий заголовок */
+}
+
+/* ПРАВА РАМКА: Блакитний неон */
+.details-box-right {
+    border: 2px solid #00b4d8;
+    box-shadow: inset 0 0 15px rgba(0, 180, 216, 0.2), 0 5px 20px rgba(0, 180, 216, 0.3);
+}
+.details-box-right h3 {
+    color: #00b4d8; /* Блакитний заголовок */
+}
+
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ЗАГАЛЬНІ НАЛАШТУВАННЯ КОСМІЧНИХ СЕКЦІЙ */
+.galaxy-section-neon, .details-section-neon {
+    position: relative;
+    width: 100%;
+    padding: 80px 0;
+    background-color: #030313; /* Універсальний глибокий нічний космос */
+    color: #ffffff;
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Розділювальна тонка неонова лінія між основними секціями */
+.galaxy-section-neon {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ТЕМАТИЧНІ КОЛЬОРИ (Змінні) */
+.theme-purple {
+    --neon-color: #8a2be2;
+    --neon-secondary: #00b4d8;
+}
+.theme-blue {
+    --neon-color: #00b4d8;
+    --neon-secondary: #8a2be2;
+}
+
+/* ЗОРІ НА ФОНІ (Працюють скрізь однаково) */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background-image: 
+        radial-gradient(1px 1px at 20px 30px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 140px 180px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 290px 150px, #fff, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 420px 80px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 670px 240px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 800px 40px, #fff, rgba(0,0,0,0));
+    background-size: 550px 350px; 
+    opacity: 0.5;
+}
+
+/* НЕОНОВІ КАРТКИ ДЛЯ ВСТУПНОГО ТЕКСТУ */
+.galaxy-card-neon {
+    position: relative;
+    z-index: 2;
+    padding: 35px;
+    border-radius: 20px;
+    background-color: rgba(5, 5, 20, 0.75);
+    backdrop-filter: blur(8px); /* Ефект розмиття скла за рамкою */
+    border: 2px solid var(--neon-color);
+    box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.02), 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.galaxy-card-neon h2, .section-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--neon-color);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.galaxy-card-neon p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #e0e0e0;
+}
+
+/* АНІМАЦІЯ ГАЛАКТИК (Підлаштовується під колір теми) */
+.galaxy {
+    max-width: 90%;
+    height: auto;
+    filter: drop-shadow(0 0 30px var(--neon-color)); 
+    animation: spinAndTilt 45s linear infinite; 
+}
+
+/* КНОПКИ З НЕОНОВИМ ГРАДІЄНТОМ */
+.btn-neon {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--neon-color), var(--neon-secondary)); 
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.btn-neon:hover {
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 25px var(--neon-color); 
+}
+
+/* НИЖНІ БЛОКИ (ДВІ КОЛОНКИ) */
+.details-box {
+    padding: 35px;
+    border-radius: 18px;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 2px solid var(--neon-color);
+    box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.02), 0 5px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Друга рамка в рядку отримує колір-супутник для контрасту */
+.details-box.block-secondary {
+    border-color: var(--neon-secondary);
+}
+
+.details-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.details-section-neon p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #d0d0d0;
+    margin-bottom: 0;
+}
+
+/* АНІМАЦІЯ ОБЕРТАННЯ */
+@keyframes spinAndTilt {
+    from {
+        transform: perspective(1000px) rotateX(50deg) rotateZ(0deg);
+    }
+    to {
+        transform: perspective(1000px) rotateX(50deg) rotateZ(360deg);
+    }
+}
+
+
+
+
+/* КОРЕНЕВА СЕКЦІЯ НА ЧОРНОМУ ФОНІ */
+.blackhole-hero-section {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Займає весь екран при завантаженні */
+    background-color: #000000; /* Абсолютно чорний космос */
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ФОНОВІ ЗОРІ */
+.space-stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(1px 1px at 10% 20%, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 50% 40%, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 80% 70%, #fff, rgba(0,0,0,0));
+    background-size: 400px 400px;
+    opacity: 0.4;
+    
+    /
+    pointer-events: none; 
+    z-index: 1;           
+}
+
+/* СИСТЕМА ЧОРНОЇ ДІРИ (Нахиляємо всю площину для 3D ефекту) */
+.blackhole-system {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Нахиляємо систему, як реальний космічний об'єкт */
+    transform: perspective(1000px) rotateX(60deg) rotateY(-15deg);
+}
+
+/* САМА ЧОРНА ДІРА (Контейнер) */
+.blackhole-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 1. АККРЕЦІЙНИЙ ДИСК (Яскраве помаранчеве світне кільце) */
+.accretion-disk {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    /* Вогняний градієнт розпеченого газу */
+    background: radial-gradient(circle, rgba(255,85,0,0) 30%, rgba(255,100,0,1) 45%, rgba(255,200,0,0.8) 55%, rgba(138,43,226,0) 70%);
+    /* Потужне неонове розмиття і світіння */
+    filter: blur(4px) drop-shadow(0 0 30px #ff5500);
+    /* Швидке обертання диска */
+    animation: spinDisk 4s linear infinite;
+}
+
+/* 2. СИНГУЛЯРНІСТЬ (Абсолютно чорне ядро по центру) */
+.singularity-core {
+    position: absolute;
+    width: 85px;
+    height: 85px;
+    background-color: #000000;
+    border-radius: 50%;
+    z-index: 5;
+    /* Чорна тінь, що поглинає світло навколо себе */
+    box-shadow: 0 0 20px 5px #000000, inset 0 0 10px #000000;
+}
+
+/* КРУЖАЩІСЯ НАВКОЛО ЗОРІ */
+.orbiting-stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: 
+        radial-gradient(2px 2px at 150px 100px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 450px 200px, #ffaa00, rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 200px 500px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1px 1px at 400px 450px, #00b4d8, rgba(0,0,0,0)),
+        radial-gradient(2.5px 2.5px at 100px 300px, #fff, rgba(0,0,0,0)),
+        radial-gradient(1.5px 1.5px at 500px 350px, #fff, rgba(0,0,0,0));
+    /* Зорі обертаються трохи повільніше за диск */
+    animation: spinDisk 15s linear infinite;
+    filter: drop-shadow(0 0 5px #fff);
+}
+
+/* ТЕКСТ ПОВЕРХ ГЕРОЇЧНОЇ СЕКЦІЇ */
+.hero-overlay-text {
+    position: absolute;
+    bottom: 10%; /* Змістили вниз, щоб не перекривати саму діру */
+    z-index: 10;
+    font-family: sans-serif;
+}
+
+.hero-overlay-text h1 {
+    font-size: 3rem;
+    color: #ff5500;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 85, 0, 0.6);
+}
+
+.hero-overlay-text p {
+    font-size: 1.3rem;
+    color: #a0a0a0;
+}
+
+/* АНІМАЦІЯ ОБЕРТАННЯ */
+@keyframes spinDisk {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+/* ==========================================================================
+   ОКРЕМИЙ БЛОК: СТИЛІ ДЛЯ СТОРІНКИ ГАЛАКТИК (МІНІМАЛІЗМ БЕЗ НЕОНУ)
+   ========================================================================== */
+/* ==========================================================================
+   ОКРЕМИЙ БЛОК: СТОРІНКА ГАЛАКТИК (МІНІМАЛІЗМ БЕЗ НЕОНУ)
+   ========================================================================== */
+
+.galaxy-page-section {
+    position: relative;
+    width: 100%;
+    background-color: #05060c; /* Матовый темно-синий космос */
+    color: #ffffff;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+
+.galaxy-page-section .page-main-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: none !important;
+}
+
+
+.galaxy-minimal-card {
+    padding: 30px 40px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03); 
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: none !important; 
+}
+
+.galaxy-minimal-card:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.06); 
+}
+
+
+.galaxy-minimal-card h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: none !important;
+}
+
+.galaxy-minimal-card p {
+    font-size: 1.05rem;
+    color: #a0a5b5;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+
+.galaxy-static-img {
+    max-width: 130px;
+    height: auto;
+    border-radius: 8px;
+    filter: none !important;
+    transition: transform 0.5s ease;
+}
+
+.galaxy-minimal-card:hover .galaxy-static-img {
+    transform: scale(1.03);
+}
+
+
+
+/* ==========================================================================
+   ОБНОВЛЕНИЙ СТРОГИЙ СТИЛЬ ГАЛАКТИК
+   ========================================================================== */
+
+/* Загальний контейнер секції — робимо його трохи світлішим для контрасту з картками */
+.galaxy-page-section {
+    position: relative;
+    background-color: #0c0e16; /* Глибокий, але не синяво-чорний колір */
+    color: #f0f0f0;
+}
+
+/* Приглушуємо зірки, щоб вони не сперечалися з контентом */
+.space-stars {
+    opacity: 0.15; /* Залишаємо ледь помітними на фоні */
+    pointer-events: none; /* Мишка ігнорує цей шар, щоб кнопки натискалися */
+}
+
+/* Головний заголовок сторінки — чистий, білий, без неонового світіння */
+.page-main-title {
+    color: #ffffff !important;
+    text-shadow: none !important; /* Прибираємо тінь/світіння */
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   СТРОГІ КАРТКИ (GALAXY-MINIMAL-CARD)
+   ========================================================================== */
+.galaxy-minimal-card {
+    /* Фон картки: матовий темний, не прозорий, без ефекту розмиття (blur) */
+    background: #1a1d29;
+    
+    /* Прибираємо будь-яке світіння. Залишаємо дуже тонку, ледь помітну рамку */
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    
+    /* Додаємо строгу, м'яку тінь для об'єму (плоский стиль) */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3) !important;
+    
+    border-radius: 12px;
+    padding: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Легкий ефект при наведенні — картка просто акуратно «вспливає» вгору */
+.galaxy-minimal-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4) !important;
+    border-color: rgba(255, 255, 255, 0.15) !important;
+}
+
+/* Стилі для заголовків усередині карток (h2) */
+.galaxy-minimal-card h2 {
+    color: #ffffff;
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+/* Стилі для тексту опису */
+.galaxy-minimal-card p {
+    color: rgba(255, 255, 255, 0.8); /* Трохи приглушений білий для комфорту очей */
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   КНОПКИ В СТРОГОМУ СТИЛІ (GALAXY-BTN)
+   ========================================================================== */
+
+/* Базовий стиль кнопок — тепер вони повністю залиті кольором, а не контурні */
+.galaxy-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 6px; /* Трохи гостріші кути для більшої строгості */
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+    border: none; /* Прибираємо рамку за замовчуванням */
+}
+
+/* Кнопка Андромеди: Строгий Фіолетовий (заливка) */
+.btn-andromeda {
+    background-color: #7b2cbf; /* Приглушений, глибокий фіолетовий */
+    color: #ffffff;
+}
+
+.btn-andromeda:hover {
+    background-color: #9d4edd; /* Стає трохи яскравішою при наведенні */
+    color: #ffffff;
+}
+
+/* Кнопка Сомбреро: Темне Золото (заливка) */
+.btn-sombrero {
+    background-color: #cda53a; /* Пісочно-золотий, матовий колір */
+    color: #05060c; /* Темний текст для гарного контрасту */
+}
+
+.btn-sombrero:hover {
+    background-color: #e5c158; /* Стає світлішою при наведенні */
+    color: #05060c;
+}
+
+То/* ================= ГОЛОВНИЙ ЕКРАН З ОРБІТОЮ ТА ІНФО ПОРУЧ ================= */
+
+.solar-hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 80vh;
+    background-color: #000000 !important; /* !important железно сделает фон чёрным */
+    overflow: hidden;
+    padding: 60px 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Контейнер для 3D орбіт (залишаємо колишні ідеальні налаштування) */
+.solar-system-orbit-3d {
+    position: relative;
+    width: 480px;
+    height: 480px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: perspective(1000px) rotateX(65deg) rotateY(-5deg);
+    transform-style: preserve-3d;
+}
+
+/* ==========================================================================
+   НОВИЙ СТИЛЬ: МІНІМАЛІСТИЧНИЙ КОСМІЧНИЙ ІНТЕРФЕЙС (БЕЗ НЕОНУ)
+   ========================================================================== */
+
+/* 1. Головна секція (глибокий матовий космос) */
+.solar-page-section {
+    position: relative;
+    width: 100%;
+    background-color: #05060c; /* Дуже темний матовий синьо-чорний */
+    color: #ffffff;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+/* Головний заголовок сторінки — тепер просто чистий, чіткий і білий */
+.page-main-title {
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: none !important; /* Повністю прибираємо неон */
+}
+
+/* 2. Нова мінімалістична картка планети */
+.planet-card-neon {
+    padding: 30px 40px;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03); /* Ледь помітний білий фон */
+    transition: background 0.3s ease, transform 0.3s ease;
+    position: relative;
+    box-shadow: none !important; /* Жодного неонового світіння */
+}
+
+/* Ефект при наведенні: картка просто стає трохи світлішою */
+.planet-card-neon:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* 3. Оформлення тексту всередині карток */
+.planet-card-neon h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    text-shadow: none !important; /* Прибираємо світіння з тексту */
+}
+
+.planet-card-neon p {
+    font-size: 1.05rem;
+    color: #a0a5b5; /* Спокійний приглушений колір для тексту */
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Картинки планет */
+.planet-static-img {
+    max-width: 120px;
+    height: auto;
+    border-radius: 50%;
+    filter: none !important; /* Прибираємо drop-shadow, якщо він був */
+}
+
+/* ==========================================================================
+   ТОНКІ АКУРАТНІ РАМКИ ТА АКЦЕНТНІ КОЛЬОРИ (БЕЗ СВІТІННЯ)
+   ========================================================================== */
+
+/* Земля — спокійний глибокий синій */
+.border-earth {
+    border: 1px solid rgba(0, 180, 216, 0.4); /* Дуже тонка напівпрозора рамка */
+}
+.border-earth h2 {
+    color: #00b4d8;
+}
+.border-earth:hover {
+    border-color: #00b4d8; /* Стає чіткішою при наведенні */
+}
+
+/* Марс — матовий стриманий червоний */
+.border-mars {
+    border: 1px solid rgba(255, 75, 75, 0.4);
+}
+.border-mars h2 {
+    color: #ff4b4b;
+}
+.border-mars:hover {
+    border-color: #ff4b4b;
+}
+
+/* Юпітер — приглушений пісочно-жовтий */
+.border-jupiter {
+    border: 1px solid rgba(255, 204, 0, 0.4);
+}
+.border-jupiter h2 {
+    color: #ffcc00;
+}
+.border-jupiter:hover {
+    border-color: #ffcc00;
+}
+
+/* Уран — пастельний м'ятно-лазурний */
+.border-uranus {
+    border: 1px solid rgba(128, 237, 153, 0.4);
+}
+.border-uranus h2 {
+    color: #80ed99;
+}
+.border-uranus:hover {
+    border-color: #80ed99;
+}
+
+/* АНІМАЦІЙНІ СТИЛІ (Ті самі робочі сфери, що й раніше) */
+.sun-core-yellow {
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #ffffff 0%, #fff700 30%, #ffaa00 60%, #ff4400 100%);
+    filter: drop-shadow(0 0 45px #ffaa00) drop-shadow(0 0 10px #ffcc00);
+    z-index: 10;
+    transform: rotateX(-65deg) rotateY(5deg); 
+}
+
+.orbit-line {
+    position: absolute;
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform-style: preserve-3d;
+}
+
+.earth-orbit-line { width: 260px; height: 260px; animation: spinOrbitForward 10s linear infinite; }
+.mars-orbit-line { width: 400px; height: 400px; animation: spinOrbitForward 18s linear infinite; }
+
+.planet-sphere { position: absolute; top: 50%; left: 100%; border-radius: 50%; }
+
+.earth-sphere {
+    width: 22px; height: 22px; margin-top: -11px; margin-left: -11px;
+    background: radial-gradient(circle at 35% 35%, #00f2fe 0%, #00b4d8 55%, #005f73 90%, #000000 100%);
+    filter: drop-shadow(0 0 12px #00b4d8);
+    animation: spinPlanetCorrect 10s linear infinite;
+}
+
+.mars-sphere {
+    width: 16px; height: 16px; margin-top: -8px; margin-left: -8px;
+    background: radial-gradient(circle at 35% 35%, #ff9a9e 0%, #ff5555 55%, #b80d0d 90%, #000000 100%);
+    filter: drop-shadow(0 0 10px #ff3333);
+    animation: spinPlanetCorrect 18s linear infinite;
+}
+
+@keyframes spinOrbitForward { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes spinPlanetCorrect { from { transform: rotate(0deg) rotateX(-65deg); } to { transform: rotate(-360deg) rotateX(-65deg); } }
+
+
+
+
+/* ================= КОМПАКТНІ СТИЛІ З КРУГЛИМИ КУТАМИ ================= */
+
+/* Сама карточка планеты (теперь более узкая и округлая) */
+.planet-card-flat {
+    padding: 15px 30px !important; /* Уменьшили верхний и нижний отступы с 30px до 15px */
+    border-radius: 20px !important; /* Сделали углы карточек более мягкими и круглыми */
+    background: rgba(255, 255, 255, 0.03);
+    transition: background 0.3s ease, transform 0.3s ease;
+    box-shadow: none !important;
+}
+
+.planet-card-flat:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Компактные изображения планет */
+.planet-static-img {
+    max-width: 90px !important; /* Слегка уменьшили размер картинок под узкие ряды */
+    height: auto;
+    border-radius: 50%;
+}
+
+/* Заголовки планет в ряду */
+.planet-card-flat h2 {
+    font-size: 1.4rem !important; /* Чуть уменьшили шрифт для аккуратности */
+    font-weight: 700;
+    margin-bottom: 6px !important;
+    text-transform: uppercase;
+    text-shadow: none !important;
+}
+
+/* Текст описания */
+.planet-card-flat p {
+    font-size: 1rem !important;
+    color: #a0a5b5;
+    line-height: 1.5;
+}
+
+/* Кнопка "Дізнатися більше" с увеличенным border-radius */
+.planet-btn {
+    display: inline-block;
+    padding: 6px 18px !important; /* Сделали кнопки более аккуратными и низкими */
+    border-radius: 12px !important; /* Округлые стильные кнопки */
+    font-size: 0.85rem !important;
+    font-weight: 600;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+/* --- ЦВЕТОВЫЕ СТРОГИЕ РАМКИ И КНОПКИ (С КРУГЛЫМИ УГЛАМИ) --- */
+
+/* Меркурий */
+.border-mercury { border: 1px solid rgba(160, 165, 181, 0.3); }
+.border-mercury h2 { color: #a0a5b5; }
+.border-mercury:hover { border-color: #a0a5b5; }
+.btn-mercury { color: #a0a5b5; border: 1px solid rgba(160, 165, 181, 0.4); }
+.btn-mercury:hover { color: #05060c; background-color: #a0a5b5; }
+
+/* Венера */
+.border-venus { border: 1px solid rgba(244, 162, 97, 0.3); }
+.border-venus h2 { color: #f4a261; }
+.border-venus:hover { border-color: #f4a261; }
+.btn-venus { color: #f4a261; border: 1px solid rgba(244, 162, 97, 0.4); }
+.btn-venus:hover { color: #05060c; background-color: #f4a261; }
+
+/* Сатурн */
+.border-saturn { border: 1px solid rgba(233, 196, 106, 0.3); }
+.border-saturn h2 { color: #e9c46a; }
+.border-saturn:hover { border-color: #e9c46a; }
+.btn-saturn { color: #e9c46a; border: 1px solid rgba(233, 196, 106, 0.3); }
+.btn-saturn:hover { color: #05060c; background-color: #e9c46a; }
+
+/* Нептун */
+.border-neptune { border: 1px solid rgba(72, 143, 177, 0.3); }
+.border-neptune h2 { color: #488fb1; }
+.border-neptune:hover { border-color: #488fb1; }
+.btn-neptune { color: #488fb1; border: 1px solid rgba(72, 143, 177, 0.4); }
+.btn-neptune:hover { color: #ffffff; background-color: #488fb1; }
